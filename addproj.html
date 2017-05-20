@@ -1,0 +1,65 @@
+<div  class="wrapper wrapper-content animated fadeInUp" ng-controller='AddProjCtrl'>
+<div class="col-lg-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Add Project
+                    </h5>  
+                </div>  
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <form role="form" class="ng-pristine ng-valid">
+                            <div class="form-group">
+                                <label>Project Name</label> <input type="text"  ng-model="projName" class="form-control"></div>
+                            <div class="form-group">
+                                <label>Description</label> <textarea class="form-control" 
+                                    cols="50" rows="5" ng-model="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control m-b" ng-model="status">
+                                <option value="1">Active</option>
+                                <option value="2">In Active</option>
+                            </select>
+                            
+                        </div>
+                            </form>
+                        </div>
+                         <div class="col-sm-6 ">
+                            <form role="form" class="ng-pristine ng-valid">
+                            <div class="form-group" id="data_4"> 
+                                <label >Start Date</label>
+                                <div class="input-group date">
+                                    <input type="datetime" class="form-control" date-time=""
+                                    ng-model="projrow.startdate" min-view="date" auto-close="true">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>    
+                            <div class="form-group" id="data_4"> 
+                                <label >Start Date</label>
+                                <div class="input-group date">
+                                    <input type="datetime" class="form-control" date-time=""
+                                    ng-model="projrow.duedate" min-view="date" auto-close="true">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>    
+                            </div>
+                            </div>
+                            
+                             <div class="form-group" id="data_4">
+                                <label >Assigned Resources:</label>
+                             <div class="input-group"> 
+                                <select multiple chosen data-placeholder="Assign To"  class="chosen-select" 
+                                style="width:350px;" tabindex="4"   
+                                ng-model="x.resource"  
+                                 ng-options="res.ID as res.name
+                              for res in resources">
+                                </select>
+                            </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit" ng-click="addProj()">Save changes</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
