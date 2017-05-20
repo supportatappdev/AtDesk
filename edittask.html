@@ -1,0 +1,261 @@
+<style>
+    .chosen-container {
+        width:250px !important;
+    }
+.selected {
+	background-color: #e7eaec;
+}
+.form-file {
+  position: relative;
+  display: inline-block;
+  overflow: hidden; 
+}
+.form-file input[type=file] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  left: 0;
+  font-size: 500px;
+}
+
+.note-editable {
+    height:218.5px;overflow:scroll
+}
+</style>
+<div class="wrapper wrapper-content ng-scope" ng-controller='AddTaskCtrl'>
+    <div class="row"> 
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content mailbox-content">
+                    <div class="file-manager">
+                        <a class="btn btn-block btn-primary compose-mail"
+                        ui-sref="email_compose">Save</a>
+                       
+                        <div class="space-25"></div>
+                        <ul class="folder-list m-b-md" style="padding: 0">
+                         <div  class="  m-t"> 
+                                <label >Start Date</label> 
+                                 <span>
+                                     <div class="input-group">
+                                <input type="datetime" class="form-control" date-time=""
+                                    ng-model="taskrow.startdate" min-view="date" auto-close="true">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                </span>
+                            </div>
+                             <div  class="  m-t"> 
+                                <label >Due Date</label> 
+                                 <span>
+                                     <div class="input-group">
+                                <input type="datetime" class="form-control" date-time=""
+                                    ng-model="taskrow.duedate" min-view="date" auto-close="true">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                </span>
+                            </div>
+                            <div  class="  m-t"> 
+                                <label >Assigned To</label> 
+                                 <span>
+                            <div >
+                                <select   
+                                class="form-control"  
+                                ng-model="taskrow.assignedto"  
+                                 ng-options="res.RESOURCE_ID as res.display_name
+                              for res in resources" >
+                                </select>
+                                </div>
+                                </span>
+                            </div>
+                             <div class="m-t"> 
+                                <label >Status</label>
+                                 <span class="m-t">
+                                     <select class="form-control m-b " ng-model="taskrow.status">
+                                        <option value="1">In-Progress</option>
+                                        <option value="2">Open</option>
+                                        <option value="3">Closed</option>
+                                        <option value="4">Re-Open</option>
+                                        <option value="5">Resolved</option>
+                                    </select>
+                                </span>
+                            </div>
+                             <div class="m-t"> 
+                                <label >Priority</label>
+                                 <span class="m-t">
+                                     <div>
+                                 <select class="form-control m-b" ng-model="taskrow.priority">
+                                <option value="1">High</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Low</option>
+                                </select>
+                                </div>
+                                </span>
+                            </div>
+                             <div class="m-t"> 
+                                 <label >Project</label>
+                                 <div class=" m-b">
+                                     <div class="input-group">
+                                <select  chosen data-placeholder="Select project" 
+                                class="chosen-select" 
+                                style="width:150px;" tabindex="4"   
+                                ng-model="taskrow.project"  ng-options="proj.ID as proj.PROJECT_NAME
+                              for proj in projects" >
+                                </select>
+                            </div>
+                             <div class="m-t"> 
+                                <label >Estimated Hours</label>
+                                 <span class="m-t">
+                                     <div>
+                                 <select class="form-control m-b" ng-model="taskrow.priority">
+                                <option value="1">High</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Low</option>
+                                </select>
+                                </div>
+                                </span>
+                            </div>
+                        </ul>
+                        <h5 class="tag-title">Labels</h5>
+                        <ul class="tag-list" style="padding: 0">
+                            <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    <a href="" class="btn btn-white btn-sm" 
+                    data-toggle="tooltip" data-placement="top" title="Print email"><i class="fa fa-print"></i> </a>
+                </div>
+                <h2>
+                     {{taskrow.taskname}}
+                </h2>
+              <!--  <div class="mail-tools tooltip-demo m-t-md">
+
+
+                    <h3>
+                        <span class="font-noraml">Project: </span>Aldus PageMaker including versions of Lorem Ipsum.
+                    </h3>
+                    <h5>
+                        <span class="pull-right font-noraml">10:15AM 02 FEB 2014</span>
+                        <span class="font-noraml">From: </span>alex.smith@corporation.com
+                    </h5>
+                </div>-->
+            </div>
+            <div class="mail-box">
+                <div class="mail-body">
+                                        <div summernote class="summernote"  
+                                            ng-model="taskrow.description"
+                                            style="">
+                                    <br/>
+                                </div>
+                    </div>
+               <!-- <div class="mail-attachment">
+                    <p> 
+                        <span><i class="fa fa-paperclip"></i> 2 attachments - </span>
+                        <a href="">Download all</a>
+                        |
+                        <a href="">View all images</a>
+                    </p>
+
+                </div>-->
+                <div class="mail-body text-right tooltip-demo">
+                    <button title="" data-placement="top" data-toggle="tooltip"
+                    type="button" data-original-title="Print" class="btn ">
+                    <i class="fa fa-print"></i> Cancel</button>
+                    <button title="" data-placement="top" data-toggle="tooltip" 
+                    data-original-title="Trash" class="btn  btn-primary " ng-click='addTask()'>
+                    <i class="fa fa-save"></i> Save</button>
+                </div>
+                <div class="clearfix"></div>
+
+            </div><div class="">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5><i class="fa fa-comments"> </i>Task Comments <i ng-show="taskCommentsloading" class="fa fa-spinner fa-spin"></i></h5>
+    
+            <!-- This is example of local custom ibox tools -->
+            <div class="ibox-tools">
+              <!--  <span class="label label-warning-light">10 Messages</span>-->
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <div>
+                <div class="feed-activity-list">
+
+                    <div class="feed-element" ng-repeat='row in taskComments'>
+                        <a href="#" class="pull-left">
+                            <img alt="image" class="img-circle" src="{{appUrl}}/aservice?getthumb={{row.pic_id}}">
+                        </a> 
+
+                        <div class="media-body ">
+                            <small class="pull-right">{{row.CREATION_DATE | date:"dd/MM/yyyy hh:mm:ss" }}</small>
+                            <strong>{{row.COMMENT}}</strong>  <br>
+                            <a ng-show="row.ATTACHMENT_ID" href="{{appUrl}}/aservice?getfile={{row.ATTACHMENT_ID}}">
+                                Attached File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group m-t">
+                    <input type="text" class="form-control" ng-model='taskrow.taskcomments'>
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary" 
+                        ng-click='addTaskComments()'><i class="fa fa-comment"></i> Comment
+                        </button> </span>
+                            
+                        </div>
+                  <div > 
+                            <span  style="padding-top:10px" ng-show="fileAttachRow.uploaded">
+                              <div ng-repeat="item in fileUploader.queue">
+                                {{item.file.name}}
+                              </div>     
+                              {{fileAttachRow.attachedfilename}}
+                              <button type="button" class="btn btn-warning btn-xs"
+                                      ng-click="fileUploader.cancel()">
+                                <span class="fa fa-ban-circle"></span> Cancel
+                              </button>
+                            </span>
+                            <span class=" btn-link form-file" ng-show="!fileAttachRow.uploaded"> 
+										<i class="fa fa-upload"></i> Attach Document 
+										<input type="file" nv-file-select=""
+										uploader="fileUploader"   
+										filters="queueLimit, customFilter"/>
+							</span>    
+                             <div> 
+                             <a href="#" ng-repeat = "item in fileUploader.queue">
+							                  <span >
+							                    <div  ng-show="fileUploader.isHTML5" 
+							                    class="progress" 
+							                         style="margin-bottom: 0;height:3px">
+							                      <div class="progress-bar" role="progressbar"
+							                      ng-style="{ 'width': item.progress + '%' }" ></div>
+							                    </div>
+							                  </span>
+							                </a>
+							              </div>
+                            </div>        
+            </div>
+
+        </div>
+    </div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
