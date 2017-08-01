@@ -1,0 +1,85 @@
+<div class="wrapper wrapper-content  animated fadeInRight" ng-controller="AgileBoard">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">  
+                    <h3>To-do</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Add new task. " class="input input-sm form-control">
+                                <span class="input-group-btn">
+                                        <button type="button" 
+                                        class="btn btn-sm btn-white" ng-click='addTask()'>
+                                         <i class="fa fa-plus"></i> Add task
+                                        </button>
+                                </span>
+                    </div>
+                    <ul ui-sortable="sortableOptions"
+                    class="sortable-list connectList agile-list" ng-model="todoList">
+                     
+                        <li class="{{task.statusClass}}-element" ng-repeat="task in todoList">
+                        <a href="#/setup/edittask/{{task.TASK_ID}}">    
+                            {{task.TASK_NAME}}
+                            <div class="agile-detail"> 
+                                                               <a href="#" class="pull-right ">
+                                <img alt="{{task.name}}" class="img-circle" 
+                                style="height:35px;width:35px;margin-top: -10px;"
+                                src="{{appUrl}}/aservice?getthumb={{task.pic_id}}">
+                                </a>
+                                <i class="fa fa-clock-o"></i> {{task.START_DATE | date:'MM/dd/yyyy'}}
+
+                            </div>
+                        </a>    
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>In Progress</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="inProgressList">
+                         <li class="{{task.statusClass}}-element" ng-repeat="task in inProgressList ">
+                          <a href="#/setup/edittask/{{task.TASK_ID}}">
+                            {{task.TASK_NAME}}
+                            <div class="agile-detail">
+                                <a href="#" class="pull-right ">
+                                <img alt="{{task.name}}" class="img-circle" 
+                                style="height:35px;width:35px;margin-top: -10px;"
+                                src="{{appUrl}}/aservice?getthumb={{task.pic_id}}">
+                                </a>
+                                <i class="fa fa-clock-o"></i> {{task.START_DATE | date:'MM/dd/yyyy'}}
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Completed</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+                    <ul ui-sortable="sortableOptions" class="sortable-list connectList agile-list" ng-model="completedList">
+                       <li class="{{task.statusClass}}-element" ng-repeat="task in completedList">
+                        <a href="#/setup/edittask/{{task.TASK_ID}}">
+                            {{task.TASK_NAME}}
+                            <div class="agile-detail">
+                            <a href="#" class="pull-right ">
+                                <img alt="{{task.name}}" class="img-circle" 
+                                style="height:35px;width:35px;margin-top: -10px;"
+                                src="{{appUrl}}/aservice?getthumb={{task.pic_id}}">
+                                </a>
+                                <i class="fa fa-clock-o"></i> {{task.START_DATE | date:'MM/dd/yyyy'}}
+                             </div>
+                        </a>     
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
